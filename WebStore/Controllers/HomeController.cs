@@ -37,5 +37,18 @@ namespace WebStore.Controllers
             return View(_employees);
             //return Content("Hello from controller");
         }
+
+        // GET: /home/details/{id}
+        public IActionResult Details(int id)
+        {
+            var employee = _employees.FirstOrDefault(x => x.Id == id);
+
+            //Если такого не существует
+            if (employee == null)
+                return NotFound(); // возвращаем результат 404 Not Found
+
+            return View(employee);
+        }
+
     }
 }
